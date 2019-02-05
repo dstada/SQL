@@ -1,0 +1,13 @@
+
+SELECT CAST(LAT_N AS DECIMAL(10,4))
+FROM STATION
+ORDER BY LAT_N
+OFFSET (
+    SELECT COUNT(LAT_N)/2
+    FROM STATION 
+    ) ROWS FETCH FIRST 1 ROWS ONLY;
+
+
+-- Hiermee maak je een lijst met 'genummerde rijen':
+--SELECT LAT_N, ROW_NUMBER() OVER (ORDER BY LAT_N) AS "Row Number"
+--FROM STATION;
